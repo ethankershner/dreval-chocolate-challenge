@@ -1,0 +1,27 @@
+[project]
+name = "dreval-chocolate-challenge"
+version = "0.2.0"
+description = "Per-drug ridge, a multi-task MLP and their average for the DrEval chocolate challenge (CTRPv2, leave-cell-line-out)."
+requires-python = ">=3.11"
+dependencies = [
+    "drevalpy==1.7.0",
+    "torch>=2.4",
+    "joblib",
+    "matplotlib",
+    "seaborn",
+    "scipy",
+    "scikit-posthocs",
+    "notebook",
+    "nbconvert",
+    "ipykernel",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["chocolate"]
+
+[tool.setuptools.package-data]
+chocolate = ["hyperparameters.yaml"]

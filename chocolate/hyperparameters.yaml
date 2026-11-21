@@ -1,0 +1,25 @@
+---
+# Every model here has one fixed configuration, so DrEval skips hyperparameter tuning and trains each model on
+# train + validation of every split.
+# The MLP holds out DrEval's early-stopping cell lines (20 of the validation cell lines) for early stopping.
+
+# Conventional defaults, not tuned: two hidden layers of 512 ReLU units, dropout 0.2, Adam at its default learning
+# rate without weight decay, batch size 64, early stopping on DrEval's early-stopping cell lines with patience 10.
+MultiTaskMLP:
+  hidden: [512]
+  depth: [2]
+  dropout: [0.2]
+  lr: [0.001]
+  batch_size: [64]
+  max_epochs: [200]
+  patience: [10]
+  n_ensemble: [10]
+  seed: [0]
+
+# The penalty grid is in per_drug_ridge.py (RIDGE_ALPHAS); the penalty is chosen per drug inside train().
+PerDrugRidge:
+  seed: [0]
+
+# Trains PerDrugRidge and MultiTaskMLP with their own entries and averages them.
+AverageEnsemble:
+  seed: [0]

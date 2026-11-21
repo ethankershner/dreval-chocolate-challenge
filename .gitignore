@@ -1,0 +1,10 @@
+.venv/
+data/
+results/
+reference/splits/
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+*.egg-info/
+publications/*.pdf
+reference/leaderboard_EnsembleMF_true_vs_pred.csv
