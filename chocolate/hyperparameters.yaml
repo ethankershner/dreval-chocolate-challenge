@@ -23,3 +23,24 @@ PerDrugRidge:
 # Trains PerDrugRidge and MultiTaskMLP with their own entries and averages them.
 AverageEnsemble:
   seed: [0]
+
+# The ablation in ensemble_mf_ablation.ipynb: DrEval's EnsembleMF with exactly the settings of its own
+# hyperparameters.yaml entry (drevalpy/models/EnsembleMF), trained on per-drug standardized targets.
+EnsembleMFStandardized:
+  feature_transform: [rank]
+  gene_list: [landmark_genes]
+  n_bits: [256]
+  hidden_dim: [256]
+  emb_dim: [128]
+  n_layers: [1]
+  dropout: [0.2]
+  use_mlp_head: [true]
+  mlp_hidden: [256]
+  use_drug_id_embedding: [true]
+  n_ensemble: [20]
+  learning_rate: [0.0003]
+  weight_decay: [0.00001]
+  batch_size: [2048]
+  max_epochs: [300]
+  patience: [25]
+  seed: [0]
