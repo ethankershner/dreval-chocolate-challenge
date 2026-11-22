@@ -9,10 +9,10 @@ BLUE, ORANGE, GREY, GREEN, RED = "#3b6ea8", "#d9822b", "#8a8f98", "#4c9a6a", "#b
 COLORS = {
     "PerDrugRidge": GREEN,
     "MultiTaskMLP": ORANGE,
-    "AverageEnsemble": RED,
+    "RidgeMLPEnsemble": RED,
     "EnsembleMF": BLUE,
 }
-OURS = ["PerDrugRidge", "MultiTaskMLP", "AverageEnsemble"]
+OURS = ["PerDrugRidge", "MultiTaskMLP", "RidgeMLPEnsemble"]
 
 
 def style() -> None:
@@ -137,7 +137,7 @@ def overview(n_genes: int, n_drugs: int):
         _box(ax, 2.6, y, 3.0, 0.95, text, color, fontsize=8.8)
         _arrow_xy(ax, (1.7, mid), (2.6, y + 0.47))
         _arrow_xy(ax, (5.6, y + 0.47), (6.7, mid))
-    _box(ax, 6.7, mid - 0.6, 1.9, 1.2, "AverageEnsemble\nmean of the two", RED, fontsize=9)
+    _box(ax, 6.7, mid - 0.6, 1.9, 1.2, "RidgeMLPEnsemble\nmean of the two", RED, fontsize=9)
     _arrow_xy(ax, (8.6, mid), (9.1, mid))
     _box(ax, 9.1, mid - 0.6, 2.0, 1.2, f"ln IC50 for\n{n_drugs} drugs", GREY)
     ax.text(4.1, 3.45, "each trained on its own, on the same data", ha="center", fontsize=9.5, color="#333333")

@@ -21,7 +21,7 @@ PerDrugRidge:
   seed: [0]
 
 # Trains PerDrugRidge and MultiTaskMLP with their own entries and averages them.
-AverageEnsemble:
+RidgeMLPEnsemble:
   seed: [0]
 
 # The ablation in ensemble_mf_ablation.ipynb: DrEval's EnsembleMF with exactly the settings of its own

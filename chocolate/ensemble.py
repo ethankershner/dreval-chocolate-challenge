@@ -1,5 +1,5 @@
 """
-AverageEnsemble: the plain average of PerDrugRidge and MultiTaskMLP.
+RidgeMLPEnsemble: the plain average of PerDrugRidge and MultiTaskMLP.
 
 Each part is trained exactly as when it runs on its own (same class, same hyperparameters.yaml entry), and the
 ensemble's prediction is their unweighted mean. No weights are fitted, so nothing beyond the training data is used.
@@ -20,7 +20,7 @@ from .per_drug_ridge import PerDrugRidge
 COMPONENTS: list[type[DRPModel]] = [PerDrugRidge, MultiTaskMLP]
 
 
-class AverageEnsemble(DRPModel):
+class RidgeMLPEnsemble(DRPModel):
     """Unweighted average of the per-drug ridge and the multi-task MLP."""
 
     cell_line_views = ["gene_expression"]
@@ -35,8 +35,8 @@ class AverageEnsemble(DRPModel):
 
     @classmethod
     def get_model_name(cls) -> str:
-        """:returns: the model name "AverageEnsemble"."""
-        return "AverageEnsemble"
+        """:returns: the model name "RidgeMLPEnsemble"."""
+        return "RidgeMLPEnsemble"
 
     def build_model(self, hyperparameters: dict[str, Any]) -> None:
         """
@@ -125,7 +125,7 @@ class AverageEnsemble(DRPModel):
             part.save(os.path.join(directory, part.get_model_name()))
 
     @classmethod
-    def load(cls, directory: str) -> "AverageEnsemble":
+    def load(cls, directory: str) -> "RidgeMLPEnsemble":
         """
         Restore a model saved with ``save``.
 

@@ -11,9 +11,9 @@ On the 10 precomputed leaderboard splits, run and scored with DrEval (normalized
 | EnsembleMF (leaderboard) | 0.376 | | |
 | `PerDrugRidge` | 0.407 | 10 of 10 | 0.003 |
 | `MultiTaskMLP` | 0.407 | 9 of 10 | 0.077 |
-| **`AverageEnsemble`** | **0.423** | **10 of 10** | **0.003** |
+| **`RidgeMLPEnsemble`** | **0.423** | **10 of 10** | **0.003** |
 
-No setting is tuned: the ridge picks its penalty per drug inside the training data, and the network uses conventional defaults with early stopping. `AverageEnsemble`, the unweighted mean of the two, ranks first among the 35 models on every split and significantly outperforms `EnsembleMF`. So does the ridge on its own; the network alone is ahead on 9 of 10 splits but not significantly. The p-values come from the Friedman test with Conover post-hoc and Benjamini-Hochberg correction, with each model added to the published leaderboard on its own.
+No setting is tuned: the ridge picks its penalty per drug inside the training data, and the network uses conventional defaults with early stopping. `RidgeMLPEnsemble`, the unweighted mean of the two, ranks first among the 35 models on every split and significantly outperforms `EnsembleMF`. So does the ridge on its own; the network alone is ahead on 9 of 10 splits but not significantly. The p-values come from the Friedman test with Conover post-hoc and Benjamini-Hochberg correction, with each model added to the published leaderboard on its own.
 
 The notebook explores why:
 
@@ -45,7 +45,7 @@ Both models use only the expression of the 867 L1000 landmark genes, arcsinh-tra
 |---|---|
 | `PerDrugRidge` | One ridge regression per drug. The penalty is chosen per drug from 14 values by exact leave-one-out error on the training cell lines. |
 | `MultiTaskMLP` | One network with an output per drug, trained on per-drug standardized targets with a squared error over measured pairs only. Conventional default settings: two hidden layers of 512 ReLU units, dropout 0.2, Adam (learning rate 0.001, no weight decay), batch size 64, early stopping with patience 10. 10 seeds are averaged. |
-| `AverageEnsemble` | Trains `PerDrugRidge` and `MultiTaskMLP` and returns the unweighted mean of their predictions. |
+| `RidgeMLPEnsemble` | Trains `PerDrugRidge` and `MultiTaskMLP` and returns the unweighted mean of their predictions. |
 
 ## Contents
 
