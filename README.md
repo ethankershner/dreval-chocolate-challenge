@@ -95,3 +95,7 @@ The DrEval run takes about 15 minutes on one GPU. It is skipped if `results/fina
 - **Pair counting in normalized metrics.** DrEval joins predictions to the `NaiveMeanEffectsPredictor` reference on (drug, cell line), so a pair listed twice in the data is counted four times. This affects every model equally. The notebook's scorer reproduces it, so its numbers match DrEval's report exactly.
 - **Gene lists.** The `meta.zip` on Zenodo dated 2026-11-03 has truncated gene lists (`landmark_genes` has 13 genes). This repo used the full lists from the earlier version.
 - **Per-drug models passed in from outside.** DrEval decides where a single-drug model's results go by looking its name up in `SINGLE_DRUG_MODEL_FACTORY`, not by `is_single_drug_model`. A per-drug model passed to `drug_response_experiment` as a class, without being in that dictionary, makes every drug overwrite the same prediction file. The per-drug ridge here avoids this by being an ordinary model that fits its drugs internally.
+
+## AI usage disclosure
+
+This work was developed with the help of AI assistants: Claude Opus 5.5 and Claude Fable 5.2 (Anthropic). They were used to help write and debug code, run and analyze experiments, and draft text and figures. The author directed the work, reviewed the code, results and text, and is responsible for all content.
